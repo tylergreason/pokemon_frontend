@@ -12,7 +12,7 @@ export default class Pokemon extends React.Component {
         method: 'GET', // or 'PUT'
         headers: {
             'Content-Type': 'application/json',
-            'Access-Token': 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxOH0.OdsvZEfH4BRuRK5_Joz6AYtlQ-W8TcUgFwqzic1lq5I'
+            'Access-Token': localStorage.auth_token
         }
         })
         .then((response) => response.json())
@@ -31,11 +31,21 @@ export default class Pokemon extends React.Component {
         })
     }
 
+    renderIfLoggedIn = () => {
+        localStorage.getItem('auth_token') 
+        ? 
+        console.log("it is authed!")
+        : 
+        console.log(' it is not authed! ')
+    }
     render() {
         return (
             <div>
                 pokemon
                 {this.renderPokemon()}
+                {this.renderIfLoggedIn()}
+
+                
             </div>
         )
     }
