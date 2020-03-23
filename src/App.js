@@ -1,9 +1,12 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'; 
-import Pokemon from './components/Pokemon'
+// import Pokemon from './components/Pokemon'
 import Login from './Auth/Login'
 import Signup from './Auth/Signup'
+import CheckLogin from './Auth/CheckLogin'
+import MyTeams from './containers/MyTeams'
+import PokemonCardSmall from './components/Pokemon'
 
 
 class App extends React.Component{
@@ -16,7 +19,12 @@ class App extends React.Component{
     // clear local storage
     localStorage.clear()
     this.setState({logged_in:false})
+  }
 
+  renderListPokemonCardSmall = (pokemons) => {
+    return pokemons.map(pokemon => {
+      return <PokemonCardSmall pokemon={pokemon}/>
+    })
   }
   
   render(){
@@ -24,17 +32,25 @@ class App extends React.Component{
       <Router>
       {/* render header here so it shows up everywhere */}
       <Switch>
-        <Route exact path="/" component={() => ('hello!')} />
+        <Route exact path="/" component={() =>{
+          return <CheckLogin component={MyTeams}/>
+        }} />
+          
+        <Route path="/myteams" component = {() =>{
+          return <MyTeams 
+            renderListPokemonCardSmall={this.renderListPokemonCardSmall}
+          />
+        }} />
         
         <Route exact path="/logout" component={()=> {
           this.handleLogout()
           return <Redirect to="/login" />
         }}/>
 
-        <Route path="/pokemon" component={()=>{
+        {/* <Route path="/pokemon" component={()=>{
           return <Pokemon />
         }}>
-        </Route>
+        </Route> */}
 
         <Route path="/login" component={()=>{
           return <Login handleLogin={this.handleLogin}/>

@@ -9,7 +9,7 @@ export default class Pokemon extends React.Component {
 
     componentDidMount = () => {
         fetch(pokeApi, {
-        method: 'GET', // or 'PUT'
+        method: 'GET',
         headers: {
             'Content-Type': 'application/json',
             'Access-Token': localStorage.auth_token
@@ -31,21 +31,11 @@ export default class Pokemon extends React.Component {
         })
     }
 
-    renderIfLoggedIn = () => {
-        localStorage.getItem('auth_token') 
-        ? 
-        console.log("it is authed!")
-        : 
-        console.log(' it is not authed! ')
-    }
     render() {
         return (
             <div>
                 pokemon
-                {this.renderPokemon()}
-                {this.renderIfLoggedIn()}
-
-                
+                {this.renderPokemon()}               
             </div>
         )
     }
