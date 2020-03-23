@@ -3,8 +3,8 @@ import React from 'react'
 
 const TeamCard = (props) => {
 
-    return <div>
-            {console.log(props.team.pokemons)}
+    return <div style={{backgroundColor:'rgba(100,100,100,0.5)'}}>
+            {console.log(props.team)}
             <h2>{props.team.name}</h2>
             <p>{props.team.description}</p>
             {props.renderListPokemonCardSmall(props.team.pokemons)}
