@@ -4,14 +4,16 @@ import React, { Component } from 'react'
 class PokemonCardSmall extends Component {
 
     renderAttributes = (attributes) => {
-        return attributes.map(attribute => <label>{attribute.name}</label>)
-        // return attributes.map(attribute => <li>{attribute.name}</li>)
+        return attributes.map(attribute => <label key={attribute.id}>{attribute.name}</label>)
     }
 
     render (){
-        console.log(this.props)
         return(
-        <div style={{border: '5px solid black'}}>
+        <div 
+            style={{border: '5px solid black', width:'25%'}}
+            // onClick={() => this.props.handleClick(this.props.pokemon)}
+            onClick={() => this.props.handleClick(this.props.pokemon)}
+        >
             <h3>{this.props.pokemon.name}</h3>
             <img src={this.props.pokemon.image_url}/>
             <p>Types: </p>
