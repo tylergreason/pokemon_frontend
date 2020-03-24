@@ -1,11 +1,30 @@
 import React, { Component } from 'react'
 import PokemonCardSmall from './PokemonCardSmall'
-import Pokemon from './Pokemon'
+import EditPokemon from './EditPokemon'
+// import Pokemon from './Pokemon'
 
 export default class TeamCardLarge extends Component {
     state={
         team:this.props.team,
-        pokemons:[]
+        pokemons:[],
+        selectedPokemon:null
+    }
+
+    // fetch all pokemon and render them in a div 
+    componentDidMount = () =>{ 
+        fetch('http://localhost:3000/pokemons', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Token': localStorage.auth_token
+            }
+            })
+        .then(resp => resp.json())
+        .then(data => {
+            return this.setState({
+                pokemons:data
+            })
+        })
     }
 
     removePokemonFromTeam = (selectedPokemon) => {
@@ -25,7 +44,6 @@ export default class TeamCardLarge extends Component {
         const newTeam = [... this.state.team.pokemons,pokemon]
         this.state.team.pokemons.length <6 && this.checkIfPokemonIsOnTeam(pokemon,this.state.team) === false
         ?
-        // console.log(this.state.team.pokemons.length) 
         this.setState({
             team: {... this.state.team, pokemons: newTeam}
         })
@@ -42,24 +60,18 @@ export default class TeamCardLarge extends Component {
 
     renderAvailablePokemon = (pokemons) => {
         return pokemons.map(pokemon => {
-            return <PokemonCardSmall pokemon={pokemon} key={pokemon.id} handleClick={this.addPokemonToTeam}/>
+            return <PokemonCardSmall 
+                pokemon={pokemon} 
+                key={pokemon.id} 
+                // handleClick={this.addPokemonToTeam}
+                handleClick={() => this.editPokemonClick(pokemon)}
+            />
         })
     }
 
-    // fetch all pokemon and render them in a div 
-    componentDidMount = () =>{ 
-        fetch('http://localhost:3000/pokemons', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Token': localStorage.auth_token
-            }
-            })
-        .then(resp => resp.json())
-        .then(data => {
-            return this.setState({
-                pokemons:data
-            })
+    editPokemonClick = (pokemon) =>{
+        this.setState({
+            selectedPokemon: pokemon
         })
     }
 
@@ -90,6 +102,7 @@ export default class TeamCardLarge extends Component {
                     <h3>{this.props.team.description}</h3>
                     <h3>Current Pocket Monsters:</h3>
                     {this.renderTeamPokemons(this.state.team.pokemons)}
+                    {this.state.selectedPokemon ? <EditPokemon pokemon={this.state.selectedPokemon}/> : null}
                     <h3>Other Pocket Monsters:</h3>
                     {this.renderAvailablePokemon(this.state.pokemons)}
                 </>

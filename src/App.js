@@ -36,11 +36,20 @@ class App extends React.Component{
           return <CheckLogin component={MyTeams}/>
         }} />
           
-        <Route path="/myteams" component = {() =>{
+          <Route path="/myteams" component={() =>{
+          return <CheckLogin component={
+            <MyTeams 
+            renderListPokemonCardSmall={this.renderListPokemonCardSmall}
+          />
+          }/>
+        }} />
+
+
+        {/* <Route path="/myteams" component = {() =>{
           return <MyTeams 
             renderListPokemonCardSmall={this.renderListPokemonCardSmall}
           />
-        }} />
+        }} /> */}
         
         <Route exact path="/logout" component={()=> {
           this.handleLogout()

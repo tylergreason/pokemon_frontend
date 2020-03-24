@@ -10,35 +10,6 @@ export default class MyTeam extends Component {
         selectedTeam:null
     }
 
-    componentDidMount = () => {
-        this.fetchTeams()
-    }
-
-    renderListPokemonCardSmall = (pokemons) => {
-        return pokemons.map(pokemon => {
-            return <PokemonCardSmall pokemon={pokemon} key={pokemon.id} handleClick={this.pokemonCardClick}/>
-        })
-    }
-    // placeholder function for pokemon card clicks 
-    pokemonCardClick = (pokemon => console.log(pokemon))
-
-    renderTeamCards = () => {
-        return this.state.teams.map(team => <TeamCard 
-                team={team} 
-                key={team.id}
-                renderListPokemonCardSmall={this.renderListPokemonCardSmall}
-                teamCardClick={this.teamCardClick}
-            />)
-    }
-
-    renderTeamCardLarge = (team) =>{
-        return <TeamCardLarge 
-            team={team}
-            backClick={this.returnToTeamList}
-            renderListPokemonCardSmall={this.renderListPokemonCardSmall}
-        />
-    }
-
     fetchTeams = () => {
         fetch(MYTEAMS, {
             method: 'GET',
@@ -56,6 +27,42 @@ export default class MyTeam extends Component {
             console.error('Error:', error);
             });
     }
+
+    componentDidMount = () => {
+        this.fetchTeams()
+    }
+
+    renderListPokemonCardSmall = (pokemons) => {
+        return pokemons.map(pokemon => {
+            return <PokemonCardSmall 
+                pokemon={pokemon} 
+                key={pokemon.id} 
+                handleClick={this.pokemonCardClick}
+            />
+        })
+    }
+    // placeholder function for pokemon card clicks 
+    pokemonCardClick = (pokemon => console.log(pokemon))
+    // pokemonCardClick = (pokemon => console.log('bleh'))
+
+    renderTeamCards = () => {
+        return this.state.teams.map(team => <TeamCard 
+                team={team} 
+                key={team.id}
+                renderListPokemonCardSmall={this.renderListPokemonCardSmall}
+                teamCardClick={this.teamCardClick}
+                
+        />)
+    }
+
+    renderTeamCardLarge = (team) =>{
+        return <TeamCardLarge 
+            team={team}
+            backClick={this.returnToTeamList}
+            renderListPokemonCardSmall={this.renderListPokemonCardSmall}
+        />
+    }
+
 
     returnToTeamList = () => {
         this.setState({
