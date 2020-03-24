@@ -31,7 +31,7 @@ export default class TeamCardLarge extends Component {
         })
         :
         // console.log(this.state.team.pokemons.length)
-        alert('there are too many Pokemon on the team or that Pokemon is already on the team!')
+        console.log('there are too many Pokemon on the team or that Pokemon is already on the team!')
     }
 
     renderTeamPokemons = (pokemons) => {
@@ -63,13 +63,30 @@ export default class TeamCardLarge extends Component {
         })
     }
 
-
+    saveTeam = () =>{
+        const data = this.state.team
+        fetch(`http://localhost:3000/teams/${this.state.team.id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Token': localStorage.auth_token
+            },
+            body: JSON.stringify(data)
+            })
+        .then(resp => resp.json())
+        .then(data => {
+            console.log(data)
+            this.setState({
+                team:data
+            })
+        })
+    }
     render(){
-        {console.log(this.props)}
         return (
                 <>
                     <h1>{this.props.team.name}</h1>
                     <button onClick={this.props.backClick}>Back To Teams</button>
+                    <button onClick={this.saveTeam}>Save Team</button>
                     <h3>{this.props.team.description}</h3>
                     <h3>Current Pocket Monsters:</h3>
                     {this.renderTeamPokemons(this.state.team.pokemons)}

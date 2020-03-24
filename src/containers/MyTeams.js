@@ -11,21 +11,7 @@ export default class MyTeam extends Component {
     }
 
     componentDidMount = () => {
-        fetch(MYTEAMS, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Access-Token': localStorage.auth_token
-        }
-        })
-        .then((response) => response.json())
-        .then((data) => {
-            // console.log(data)
-            this.setState({teams:data});
-        })
-        .catch((error) => {
-        console.error('Error:', error);
-        });
+        this.fetchTeams()
     }
 
     renderListPokemonCardSmall = (pokemons) => {
@@ -53,10 +39,29 @@ export default class MyTeam extends Component {
         />
     }
 
+    fetchTeams = () => {
+        fetch(MYTEAMS, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Token': localStorage.auth_token
+            }
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                // console.log(data)
+                this.setState({teams:data});
+            })
+            .catch((error) => {
+            console.error('Error:', error);
+            });
+    }
+
     returnToTeamList = () => {
         this.setState({
             selectedTeam:null
         })
+        this.fetchTeams()
     }
 
     teamCardClick = (team) => {

@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 class PokemonCardSmall extends Component {
 
     renderAttributes = (attributes) => {
-        return attributes.map(attribute => <label key={attribute.id}>{attribute.name}</label>)
+        return attributes.map(attribute => <label >{attribute.name}/</label>)
     }
 
     render (){
@@ -17,9 +17,9 @@ class PokemonCardSmall extends Component {
             <h3>{this.props.pokemon.name}</h3>
             <img src={this.props.pokemon.image_url}/>
             <p>Types: </p>
-            <ul>{this.renderAttributes(this.props.pokemon.types)}</ul>
+            <React.Fragment>{this.renderAttributes(this.props.pokemon.types)}</React.Fragment>
             <p>Moves: </p>
-            <ul>{this.renderAttributes(this.props.pokemon.active_moves)}</ul>
+            <React.Fragment>{this.renderAttributes(this.props.pokemon.active_moves)}</React.Fragment>
         </div>
         )
     }
