@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import MoveCard from './MoveCard' 
+import CustomButton from './CustomButton'
 
 class EditPokemon extends Component {
     state = {
         pokemon:this.props.pokemon,
         activeMoves: this.props.pokemon.active_moves,
         moves:this.props.pokemon.moves,
-        nonActiveMoves:this.props.pokemon.non_active_moves
+        nonActiveMoves:this.props.pokemon.non_active_moves, 
+        showNonActiveMoves:true
     }
 
     componentDidUpdate=(prevProps)=>{
@@ -33,12 +35,16 @@ class EditPokemon extends Component {
 
     renderNonActiveMoves = (moves) => {
         // filter for moves that aren't in the active move list 
+        if (this.state.showNonActiveMoves){
 
-        return moves.map(move => <MoveCard 
+            return moves.map(move => <MoveCard 
                 move={move} 
                 handleClick={this.handleNonActiveMoveClick}
                 key={move.id}
-            />)
+                />)
+            }else{
+                return null
+            }
     }
 
     handleActiveMoveClick = (move) =>{
@@ -112,6 +118,16 @@ class EditPokemon extends Component {
             return <button onClick={() => this.props.addPokemonToTeam(this.props.pokemon)}>Add to Team</button>
         }
     }
+
+    renderShowNonActiveMovesButton = () => {
+        if(this.state.showNonActiveMoves === true){
+            return <CustomButton text={'hide moves'} handleClick={() => this.setState({showNonActiveMoves:false})}/>
+        }else{
+            return <CustomButton text={'show moves'} handleClick={()=>this.setState({showNonActiveMoves:true})}/>
+        }
+    }
+
+
     render(){
         return(
             <div>
@@ -124,6 +140,7 @@ class EditPokemon extends Component {
                 <p>Current Moves:</p>
                 <React.Fragment>{this.renderActiveMoves(this.state.activeMoves)}</React.Fragment>
                 <p>Available Moves:</p>
+                {this.renderShowNonActiveMovesButton()}
                 <React.Fragment>{this.renderNonActiveMoves(this.state.nonActiveMoves)}</React.Fragment>
             </div>
         )
