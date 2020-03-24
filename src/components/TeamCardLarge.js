@@ -70,9 +70,17 @@ export default class TeamCardLarge extends Component {
     }
 
     editPokemonClick = (pokemon) =>{
-        this.setState({
-            selectedPokemon: pokemon
-        })
+        fetch(`http://localhost:3000/pokemons/${pokemon.id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Token': localStorage.auth_token
+            }
+            })
+            .then(resp => resp.json())
+            .then(data => this.setState({
+                selectedPokemon: data
+            }))
     }
 
     saveTeam = () =>{
@@ -94,6 +102,7 @@ export default class TeamCardLarge extends Component {
         })
     }
     render(){
+        console.log(this.state)
         return (
                 <>
                     <h1>{this.props.team.name}</h1>

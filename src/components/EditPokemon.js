@@ -27,7 +27,7 @@ class EditPokemon extends Component {
         return moves.map(move => <MoveCard 
                 move={move} 
                 handleClick={this.handleActiveMoveClick}
-                key={`${move.name}${move.id}`}
+                key={`${move.id}`}
             />)
     }
 
