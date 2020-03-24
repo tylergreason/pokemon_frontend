@@ -32,17 +32,19 @@ export default class TeamCardLarge extends Component {
         this.setState({team: {... this.state.team, pokemons:newTeam}})
     }
 
-    checkIfPokemonIsOnTeam = (pokemon,team) => {
-        if (team.pokemons.filter(clickedPokemon => clickedPokemon.id === pokemon.id).length > 0){
+    checkIfPokemonIsOnTeam = (pokemon) => {
+        if (this.state.team.pokemons.filter(clickedPokemon => clickedPokemon.id === pokemon.id).length > 0){
             return true
         }else{
             return false
         }   
     }
 
+    
+
     addPokemonToTeam = (pokemon) =>{
         const newTeam = [... this.state.team.pokemons,pokemon]
-        this.state.team.pokemons.length <6 && this.checkIfPokemonIsOnTeam(pokemon,this.state.team) === false
+        this.state.team.pokemons.length <6 && this.checkIfPokemonIsOnTeam(pokemon) === false
         ?
         this.setState({
             team: {... this.state.team, pokemons: newTeam}
@@ -54,7 +56,11 @@ export default class TeamCardLarge extends Component {
 
     renderTeamPokemons = (pokemons) => {
         return pokemons.map(pokemon => {
-            return <PokemonCardSmall pokemon={pokemon} key={pokemon.id} handleClick={this.removePokemonFromTeam}/>
+            return <PokemonCardSmall 
+                pokemon={pokemon} 
+                key={pokemon.id} 
+                handleClick={()=>this.editPokemonClick(pokemon)}
+            />
         })
     }
 
@@ -111,7 +117,13 @@ export default class TeamCardLarge extends Component {
                     <h3>{this.props.team.description}</h3>
                     <h3>Current Pocket Monsters:</h3>
                     {this.renderTeamPokemons(this.state.team.pokemons)}
-                    {this.state.selectedPokemon ? <EditPokemon pokemon={this.state.selectedPokemon}/> : null}
+                    {this.state.selectedPokemon ? <EditPokemon 
+                        pokemon={this.state.selectedPokemon}
+                        checkIfPokemonIsOnTeam={this.checkIfPokemonIsOnTeam}
+                        addPokemonToTeam={this.addPokemonToTeam}
+                        removePokemonFromTeam={this.removePokemonFromTeam}
+
+                        /> : null}
                     <h3>Other Pocket Monsters:</h3>
                     {this.renderAvailablePokemon(this.state.pokemons)}
                 </>

@@ -104,25 +104,14 @@ class EditPokemon extends Component {
 
     }
 
-    // saveTeam = () =>{
-    //     const data = this.state.team
-    //     fetch(`http://localhost:3000/teams/${this.state.team.id}`, {
-    //         method: 'PATCH',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             'Access-Token': localStorage.auth_token
-    //         },
-    //         body: JSON.stringify(data)
-    //         })
-    //     .then(resp => resp.json())
-    //     .then(data => {
-    //         console.log(data)
-    //         this.setState({
-    //             team:data
-    //         })
-    //     })
-    // }
-
+    // buttons for adding or editing pokemon 
+    renderAddOrRemoveButton = () => {
+        if (this.props.checkIfPokemonIsOnTeam(this.props.pokemon)){
+            return <button onClick={() => this.props.removePokemonFromTeam(this.props.pokemon)}>Remove from Team</button>
+        }else{
+            return <button onClick={() => this.props.addPokemonToTeam(this.props.pokemon)}>Add to Team</button>
+        }
+    }
     render(){
         return(
             <div>
@@ -130,6 +119,7 @@ class EditPokemon extends Component {
                 <img src={this.props.pokemon.image_url}/>
                 <p>Types: </p>
                 <React.Fragment>{this.renderAttributes(this.props.pokemon.types)}</React.Fragment>
+                {this.renderAddOrRemoveButton()}
                 <button onClick={this.submitPokemon}>Submit Changes</button>
                 <p>Current Moves:</p>
                 <React.Fragment>{this.renderActiveMoves(this.state.activeMoves)}</React.Fragment>
