@@ -96,7 +96,10 @@ class EditPokemon extends Component {
         })
         .then(resp => resp.json())
         .then(data => {
-            console.log(data)
+            // console.log(data)
+            this.setState({
+                pokemon:data
+            })
         })
 
     }
