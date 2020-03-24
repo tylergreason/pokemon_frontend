@@ -8,10 +8,9 @@ const MoveCard = (props) => {
             style={
                 {backgroundColor:'rgba(100,100,100,0.2)',
                 border:'1px solid black'    
-            }
-            }
-            // onClick={() => props.teamCardClick(props.team)}
-        >
+            }}
+            onClick={() => props.handleClick(props.move)}
+        > 
             <h4>{props.move.name}</h4>
         </div>)
 }
