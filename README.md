@@ -1,68 +1,65 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Pokemon Team Builder, Backend
 
-## Available Scripts
+This is a web application meant to interface with a Rails application I built for making teams of Pokemon. The backend for this application can be found [here](https://github.com/tylergreason/pokemon_backend). Both the backend and frontend were built in a little under one week. 
 
-In the project directory, you can run:
+## Background 
 
-### `yarn start`
+This is the frontend for my fourth project for Flatiron School. This project was meant to show our understanding of Rails, Javascript, and React, and how we are able to build full web applications using each of these technologies together. 
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+I decided to build a Pokemon team builder for a few reasons: 
+- Pokemon are quite complex, and I wanted to challenge myself with building a database to hold their complicated sets of data and with building a user interface to change that data that was pleasurable to use. 
+- It would give me experience working with large sets of data. 
+- There is a _ton_ of data available for Pokemon, but you do not need to utilize all of it to make a meaningful application. So, the potential depth of the application is _deep_, but a complete, albeit simple (by Pokemon standards!), application is also feasible. 
+- I like Pokemon! I enjoy enjoy the video games (although who has the time for that these days??) and wanted to try my hand at making a better user experience than the video games offer. 
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Functionality 
 
-### `yarn test`
+The functionality is currently quite limited due to the one week time constraint for building the application. For more on the functionality of the backend that this app utilizes, see the repo for my [pokemon backend](https://github.com/tylergreason/pokemon_backend). 
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Currently, a user can: 
+- Sign up 
+- Log in 
+- Edit which Pokemon are on their teams 
+- Edit the moves of their Pokemon 
+- Edit the name and description of their teams 
 
-### `yarn build`
+## Tools and Technologies 
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+-  Javascript
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- [React](https://reactjs.org/)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- [Semantic UI React](https://github.com/Semantic-Org/Semantic-UI-React)
 
-### `yarn eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Installation 
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+# clone this repo
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+git clone git@github.com:tylergreason/pokemon_frontend.git
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+# cd into its directory
 
-## Learn More
+cd pokemon_frontend
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# ensure the backend is running on localhost:3000 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# install any necessary dependencies and start the application. Answer 'yes' when prompted if you want to run the application on a server besides localhost:3000
 
-### Code Splitting
+npm install && npm start 
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+# the application will automatically open. Use 'test@mail.com' for the username and 'test' for the password. 
+```
 
-### Analyzing the Bundle Size
+## What's Next 
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+There is a lot that can be added to this application. Some features I would like to add include: 
+- The ability for a user to make a new team (a basic feature that was overlooked until the day this project was due!). 
+- Change a Pokemon's name, nature, and ability. 
+- Show the Pokemon's types in a color related to that type (red for fire type, purple for poison, etcetera). 
+- Create a new instance of a Pokemon so that a team may have more than one of the same type of Pokemon.  
 
-### Making a Progressive Web App
+I would also like to refactor the code and make the UI more pleasant to use. I implemented Semantic UI in the last few hours before this project was due. While it helped _a lot_, it still needs a ton of work.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+I plan on coming back and finishing this application after my time at Flatiron is over. 
