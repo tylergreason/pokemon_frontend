@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import MoveCard from './MoveCard' 
 import CustomButton from './CustomButton'
+import { Button } from 'semantic-ui-react' 
 
 class EditPokemon extends Component {
     state = {
@@ -8,7 +9,7 @@ class EditPokemon extends Component {
         activeMoves: this.props.pokemon.active_moves,
         moves:this.props.pokemon.moves,
         nonActiveMoves:this.props.pokemon.non_active_moves, 
-        showNonActiveMoves:true
+        showNonActiveMoves:false
     }
 
     componentDidUpdate=(prevProps)=>{
@@ -113,9 +114,9 @@ class EditPokemon extends Component {
     // buttons for adding or editing pokemon 
     renderAddOrRemoveButton = () => {
         if (this.props.checkIfPokemonIsOnTeam(this.props.pokemon)){
-            return <button onClick={() => this.props.removePokemonFromTeam(this.props.pokemon)}>Remove from Team</button>
+            return <Button onClick={() => this.props.removePokemonFromTeam(this.props.pokemon)}>Remove from Team</Button>
         }else{
-            return <button onClick={() => this.props.addPokemonToTeam(this.props.pokemon)}>Add to Team</button>
+            return <Button onClick={() => this.props.addPokemonToTeam(this.props.pokemon)}>Add to Team</Button>
         }
     }
 
@@ -136,7 +137,7 @@ class EditPokemon extends Component {
                 <p>Types: </p>
                 <React.Fragment>{this.renderAttributes(this.props.pokemon.types)}</React.Fragment>
                 {this.renderAddOrRemoveButton()}
-                <button onClick={this.submitPokemon}>Submit Changes</button>
+                <Button onClick={this.submitPokemon}>Submit Changes</Button>
                 <p>Current Moves:</p>
                 <React.Fragment>{this.renderActiveMoves(this.state.activeMoves)}</React.Fragment>
                 <p>Available Moves:</p>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PokemonCardSmall from './PokemonCardSmall'
 import EditPokemon from './EditPokemon'
+import { Button } from 'semantic-ui-react'
 // import Pokemon from './Pokemon'
 
 export default class TeamCardLarge extends Component {
@@ -112,8 +113,8 @@ export default class TeamCardLarge extends Component {
         return (
                 <>
                     <h1>{this.props.team.name}</h1>
-                    <button onClick={this.props.backClick}>Back To Teams</button>
-                    <button onClick={this.saveTeam}>Save Team</button>
+                    <Button onClick={this.props.backClick}>Back To Teams</Button>
+                    <Button onClick={this.saveTeam}>Save Team</Button>
                     <h3>{this.props.team.description}</h3>
                     <h3>Current Pocket Monsters:</h3>
                     {this.renderTeamPokemons(this.state.team.pokemons)}

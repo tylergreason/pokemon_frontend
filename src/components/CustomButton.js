@@ -1,9 +1,10 @@
 import React from 'react' 
+import { Button } from 'semantic-ui-react' 
 import { render } from '@testing-library/react'
 
 const CustomButton = (props) => {
     return(
-        <button onClick={props.handleClick}>{props.text}</button>
+        <Button onClick={props.handleClick}>{props.text}</Button>
     )
 }
 
