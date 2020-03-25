@@ -38,6 +38,7 @@ class App extends React.Component{
       <Router>
       {/* render header here so it shows up everywhere */}
       <Switch>
+        
         <Route exact path="/" component={() =>{
           return <CheckLogin component={MyTeams}/>
         }} />

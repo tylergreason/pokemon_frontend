@@ -33,15 +33,6 @@ export default class MyTeam extends Component {
         this.fetchTeams()
     }
 
-    // renderListPokemonCardSmall = (pokemons) => {
-    //     return pokemons.map(pokemon => {
-    //         return <PokemonCardSmall 
-    //             pokemon={pokemon} 
-    //             key={pokemon.id} 
-    //             handleClick={this.pokemonCardClick}
-    //         />
-    //     })
-    // }
     renderListPokemonCardSmall = (pokemons) => {
         return <Grid container columns={6}>
     
