@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PokemonCardSmall from './PokemonCardSmall'
 import EditPokemon from './EditPokemon'
-import { Button } from 'semantic-ui-react'
+import { Button, Grid } from 'semantic-ui-react'
 // import Pokemon from './Pokemon'
 
 export default class TeamCardLarge extends Component {
@@ -55,27 +55,54 @@ export default class TeamCardLarge extends Component {
         console.log('there are too many Pokemon on the team or that Pokemon is already on the team!')
     }
 
+    // renderTeamPokemons = (pokemons) => {
+    //     return pokemons.map(pokemon => {
+    //         return <PokemonCardSmall 
+    //             pokemon={pokemon} 
+    //             key={pokemon.id} 
+    //             handleClick={()=>this.editPokemonClick(pokemon)}
+    //         />
+    //     })
+    // }
     renderTeamPokemons = (pokemons) => {
-        return pokemons.map(pokemon => {
-            return <PokemonCardSmall 
+        return <Grid container columns={6}>
+    
+        {pokemons.map(pokemon => {
+          return <Grid.Column>
+            <PokemonCardSmall 
                 pokemon={pokemon} 
                 key={pokemon.id} 
                 handleClick={()=>this.editPokemonClick(pokemon)}
             />
-        })
-    }
+          </Grid.Column>
+        })}
+        </Grid>
+      }
 
+    // renderAvailablePokemon = (pokemons) => {
+    //     return pokemons.map(pokemon => {
+    //         return <PokemonCardSmall 
+    //             pokemon={pokemon} 
+    //             key={pokemon.id} 
+    //             // handleClick={this.addPokemonToTeam}
+    //             handleClick={() => this.editPokemonClick(pokemon)}
+    //         />
+    //     })
+    // }
     renderAvailablePokemon = (pokemons) => {
-        return pokemons.map(pokemon => {
-            return <PokemonCardSmall 
+        return <Grid container columns={6}>
+    
+        {pokemons.map(pokemon => {
+          return <Grid.Column>
+            <PokemonCardSmall 
                 pokemon={pokemon} 
                 key={pokemon.id} 
-                // handleClick={this.addPokemonToTeam}
                 handleClick={() => this.editPokemonClick(pokemon)}
             />
-        })
-    }
-
+          </Grid.Column>
+        })}
+        </Grid>
+      }
     editPokemonClick = (pokemon) =>{
         fetch(`http://localhost:3000/pokemons/${pokemon.id}`, {
             method: 'GET',

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Grid } from 'semantic-ui-react'
 import './App.css';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'; 
 // import Pokemon from './components/Pokemon'
@@ -22,9 +23,14 @@ class App extends React.Component{
   }
 
   renderListPokemonCardSmall = (pokemons) => {
-    return pokemons.map(pokemon => {
-      return <PokemonCardSmall pokemon={pokemon}/>
-    })
+    return <Grid container columns={3}>
+
+    {pokemons.map(pokemon => {
+      return <Grid.Column>
+        <PokemonCardSmall pokemon={pokemon}/>
+      </Grid.Column>
+    })}
+    </Grid>
   }
   
   render(){

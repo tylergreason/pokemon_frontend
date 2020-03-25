@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Grid } from 'semantic-ui-react'
 import TeamCard from '../components/TeamCard'
 import PokemonCardSmall from '../components/PokemonCardSmall'
 import TeamCardLarge from '../components/TeamCardLarge'
@@ -32,15 +33,29 @@ export default class MyTeam extends Component {
         this.fetchTeams()
     }
 
+    // renderListPokemonCardSmall = (pokemons) => {
+    //     return pokemons.map(pokemon => {
+    //         return <PokemonCardSmall 
+    //             pokemon={pokemon} 
+    //             key={pokemon.id} 
+    //             handleClick={this.pokemonCardClick}
+    //         />
+    //     })
+    // }
     renderListPokemonCardSmall = (pokemons) => {
-        return pokemons.map(pokemon => {
-            return <PokemonCardSmall 
+        return <Grid container columns={6}>
+    
+        {pokemons.map(pokemon => {
+          return <Grid.Column>
+            <PokemonCardSmall 
                 pokemon={pokemon} 
                 key={pokemon.id} 
                 handleClick={this.pokemonCardClick}
             />
-        })
-    }
+          </Grid.Column>
+        })}
+        </Grid>
+      }
     // placeholder function for pokemon card clicks 
     pokemonCardClick = (pokemon => console.log(pokemon))
     // pokemonCardClick = (pokemon => console.log('bleh'))
