@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PokemonCardSmall from './PokemonCardSmall'
 import EditPokemon from './EditPokemon'
-import { Button, Grid } from 'semantic-ui-react'
+import { Button, Grid, Form } from 'semantic-ui-react'
 // import Pokemon from './Pokemon'
 
 export default class TeamCardLarge extends Component {
@@ -79,16 +79,6 @@ export default class TeamCardLarge extends Component {
         </Grid>
       }
 
-    // renderAvailablePokemon = (pokemons) => {
-    //     return pokemons.map(pokemon => {
-    //         return <PokemonCardSmall 
-    //             pokemon={pokemon} 
-    //             key={pokemon.id} 
-    //             // handleClick={this.addPokemonToTeam}
-    //             handleClick={() => this.editPokemonClick(pokemon)}
-    //         />
-    //     })
-    // }
     renderAvailablePokemon = (pokemons) => {
         return <Grid container columns={6}>
     
@@ -135,11 +125,44 @@ export default class TeamCardLarge extends Component {
             })
         })
     }
+
+    renderEditNameAndDesc = () => {
+        return <Form>
+            <Form.Field>
+                <label>Team Name</label>
+                <input 
+                    placeholder={this.state.team.name} 
+                    name='name'
+                    onChange={this.updateAttribute}
+                />
+            </Form.Field>
+            <Form.Field>
+                <label>Team Description</label>
+                <input 
+                    placeholder={this.state.team.description} 
+                    name='description'
+                    onChange={this.updateAttribute}
+                />
+            </Form.Field>
+        </Form>
+    }
+
+    updateAttribute = (e) => {
+        // e.preventDefault();
+        console.log(this.state.team.name) 
+        this.setState({
+            team: {
+                ...this.state.team, 
+                [e.target.name]:e.target.value
+            }
+        })
+    }
     render(){
         console.log(this.state)
         return (
                 <>
                     <h1>{this.props.team.name}</h1>
+                    {this.renderEditNameAndDesc()}
                     <Button onClick={this.props.backClick}>Back To Teams</Button>
                     <Button onClick={this.saveTeam}>Save Team</Button>
                     <h3>{this.props.team.description}</h3>
