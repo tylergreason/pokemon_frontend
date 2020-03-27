@@ -46,7 +46,7 @@ class App extends React.Component{
           <Route path="/myteams" component={() =>{
           return <CheckLogin component={
             <MyTeams 
-            renderListPokemonCardSmall={this.renderListPokemonCardSmall}
+            // renderListPokemonCardSmall={this.renderListPokemonCardSmall}
           />
           }/>
         }} />
